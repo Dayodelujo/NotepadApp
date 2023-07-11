@@ -63,6 +63,7 @@ textarea {
   border: none;
   resize: none;
   font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
   background-color: #67c6d7;
 }
 
@@ -73,9 +74,36 @@ textarea:focus {
 textarea::placeholder {
   color: gray;
   font-size: 1rem;
-  /* font-style: italic; */
   font-family: 'Roboto', sans-serif;
 
+}
+
+textarea.editMode {
+  border: none;
+  resize: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding-left: 8px;
+  font-family: 'Roboto', sans-serif;
+  border: 1px solid rgb(255, 222, 113);
+  background-color: rgb(255, 222, 113);
+}
+
+.editMode-save {
+  background-color: #bebebe;
+  border: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 15px;
+  margin-top: 8px;
+  width: 100px;
+  align-self: center;
+  padding: 7px 0 7px 0;
+}
+
+.editMode-save:hover {
+  background-color: #ededed;
+  cursor: pointer;
 }
 
 input {
@@ -87,6 +115,7 @@ input::placeholder {
   font-size: 0.95rem;
   font-family: 'Roboto', sans-serif;
 }
+
 
 .save {
   background-color: #bebebe;
@@ -117,6 +146,7 @@ input::placeholder {
 .note-footer {
   display: flex;
   align-items: center;
+  margin-top: 5px;
   justify-content: space-between;
 }
 

@@ -18,8 +18,15 @@ const Note = ({ id, text, date, handleDeleteNote, handleEditNote, editMode, setE
         <div className='note'>
             {editMode ? (
                 <>
-                    <input type='text' value={updatedText} onChange={handleInputChange} />
-                    <button onClick={() => handleSaveNote()}>Save</button>
+                    <textarea 
+                        className='editMode'
+                        type='text' 
+                        value={updatedText} 
+                        onChange={handleInputChange}  
+                        rows='8' 
+                        cols='10' 
+                    ></textarea>
+                    <button className='editMode-save' onClick={() => handleSaveNote()}>Save</button>
                 </>
             ) : (
                 <>
