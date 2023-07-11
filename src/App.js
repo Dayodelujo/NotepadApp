@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import NotesList from "./components/NotesList";
 import Search from './components/Search';
 import Header from './components/Header';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 
 const App = () => {
   const storedNotes = JSON.parse(
@@ -28,7 +28,7 @@ const App = () => {
     localStorage.getItem('react-notes-app-dark-mode')
   );
 
-  const [darkMode, setDarkMode] = useState(storedDarkMode || false);  
+  const [darkMode, setDarkMode] = useState(storedDarkMode || false);
 
   useEffect(() => {
     localStorage.setItem(
@@ -43,7 +43,7 @@ const App = () => {
       JSON.stringify(darkMode)
     );
   }, [darkMode]);
-  
+
 
   const addNote = (text) => {
     const date = new Date();
@@ -56,13 +56,25 @@ const App = () => {
     setNotes(newNotes);
   }
 
+  const editNote = (id, updatedText) => {
+    const updatedNotes = notes.map((note) => {
+      if (note.id === id) {
+        return { ...note, text: updatedText };
+      }
+      return note;
+    });
+
+    setNotes(updatedNotes);
+  };
+
+
   const deleteNote = (id) => {
-    const newNotes = notes.filter((note)=> note.id !== id);
+    const newNotes = notes.filter((note) => note.id !== id);
     setNotes(newNotes);
   }
 
   return (
-    
+
     <div className={`${darkMode && 'dark-mode'}`}>
       <Helmet>
         <meta charSet="utf-8" />
@@ -71,13 +83,14 @@ const App = () => {
         <meta name="description" content="Testing icon and title" />
       </Helmet>
       <div className='container'>
-        <Header handleToggleDarkMode={setDarkMode}/>
-        <Search handleSearchNote={(searchText) => setSearchText(searchText.toLowerCase())}/>
-        <NotesList 
+        <Header handleToggleDarkMode={setDarkMode} />
+        <Search handleSearchNote={(searchText) => setSearchText(searchText.toLowerCase())} />
+        <NotesList
           notes={notes.filter((note) =>
-              note.text.toLowerCase().includes(searchText.toLowerCase())
-            )} 
+            note.text && note.text.toLowerCase().includes(searchText.toLowerCase())
+          )}
           handleAddNote={addNote}
+          handleEditNote={editNote}
           handleDeleteNote={deleteNote}
         />
       </div>

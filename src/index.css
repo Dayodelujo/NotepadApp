@@ -120,7 +120,18 @@ input::placeholder {
   justify-content: space-between;
 }
 
+.icons {
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid red; */
+  width: 50px;
+}
+
 .delete-icon {
+  cursor: pointer;
+}
+
+.edit-icon {
   cursor: pointer;
 }
 
